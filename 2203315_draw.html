@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .main {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 20px;
+            color: white;
+            align-items: left;
+            border-radius: 20px;
+            background-color: rgb(153, 65, 234);
+            padding: 10px;
+            margin-bottom: 10px;
+
+        }
+
+        .circle {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            color: white;
+            align-items: left;
+            border-radius: 20px;
+            background-color: rgb(18, 159, 157);
+            padding: 10px;
+            margin-bottom: 10px;
+
+        }
+
+        .rectangle {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            color: white;
+            align-items: left;
+            border-radius: 20px;
+            background-color: rgb(88, 109, 213);
+            padding: 10px;
+            margin-bottom: 10px;
+
+
+        }
+        .btn{
+            border-radius: 10px;
+            padding: 7px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            border: 2px solid #ffffff;
+
+        }
+        .btn1{
+            border-radius: 10px;
+            padding: 7px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            border: 2px solid #ffffff;
+
+        }
+        .btn1:hover{
+            translate: 0 -5px;
+            background-color: rgb(255, 255, 255);
+            color:#000000;
+        }
+
+        .btn:hover{
+            translate: 0 -5px;
+            background-color: rgb(228, 84, 132);
+            color:#ffffff;
+        }
+    </style>
+    <title>Hi! School Kids😏</title>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <h1>Drawing Board</h1>
+        <p1>This webpage helps you to visualize simple geometrical shapes such as circle and rectangle.</p1>
+    </div>
+    <div style="display: flex; gap: 10px;">
+
+    <div class="circle">
+
+
+        <h2>Circle</h2>
+        <p1>The <i>area</i> of a circle with radius r is given by $\pi r^2$. Similarly, the <i>perimeter</i> of a circle
+            with radius <i>r</i> is given by $2{\pi}r$. Now, let's visualize the circle using JavaScript and HTML.</p1>
+        <br>
+        <br>
+        <div>
+            <p1>Enter the radius $r$: </p1>
+            <input type="number" id="radius" class="btn1">
+        </div>
+        <br>
+
+        <div style="font-family: 'Times New Roman', Times, serif;">
+            <button id="validate_r" class="btn">Validate Radius</button>
+            <button id="draw_c" class="btn">Draw</button>
+            <button id="compute_apc" class="btn">Compute Area/Perimeter</button>
+
+
+
+
+        </div>
+        <br>
+        <canvas id="paper1" width="400px" height="400px" style="border:2px solid #fffcfc;">
+        </canvas>
+        <p>Paper size: $400px \times 400px $. Max allowed radius: 200.</p>
+
+
+
+    </div>
+    <div class="rectangle">
+        <h2>Rectangle</h2>
+        <p>The <i>area</i> of a rectangle with width $w$ and height $h$ is given by $wh$. Similarly, the
+            <i>perimeter</i> of a rectangle with width $w$ and height $h$ is given by $2(w+h)$. Now, let's visualize the
+            rectangle using JavaScript and HTML.
+        </p>
+
+        <div style="display: flex; flex-direction: row;">
+            <p>Enter the width $w$:</p>
+            <input type="number" id="w" class="btn1" style="height: 15px; align-self: center; margin-right: 10px;">
+            <p>Enter the height $h$:</p>
+            <input type="number" 
+            id="h" 
+            class="btn1" 
+            style="height: 15px; align-self: center; margin-right: 10px;"
+            oninput="myfunction()">
+        </div>
+
+
+        <div style="font-family: 'Times New Roman', Times, serif;">
+            <button id="validate_wh" class="btn">Validate width/height</button>
+            <button id="draw_r" class="btn">Draw</button>
+            <button id="compute_apr" class="btn">Compute Area/Perimeter</button>
+
+
+        </div>
+        <br>
+        <canvas id="paper2" width="600px" height="400px" style="border:2px solid #ffffff" ;></canvas>
+        <p>Paper size: $600px \times 400px$. Max allowed width: 600 and height: 400. </p>
+
+        <hr>
+        <br>
+        <button id="clear" class="btn">Clear Inputs</button>
+
+
+    </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: {inlineMath: [['$','$'],['\\(','\\)']]}});
+    </script>
+    <script>
+
+        var br1 = document.getElementById("validate_r");
+        let radius = document.getElementById("radius").value;
+
+
+        br1.onclick = function () {
+            
+
+            if (radius === "" || radius > 200) {
+                alert("Enter a valid Radius")
+                var a=this;
+                a.setAttribute("disabled","true");
+            } else {
+                alert("Input is Valid")
+            }
+        }
+        // br1.onmouseover = function() {
+        //     let radius = document.getElementById("radius").value;
+
+        //     if (radius === "" || radius > 200) {
+        //         var a=this;
+        //         a.setAttribute("disabled","true");
+                
+        //     }
+
+        
+            
+        // }
+
+        const br2 = document.getElementById("draw_c");
+
+        br2.onclick = function () {
+            var radius = document.getElementById("radius").value;
+            if (radius === "" || radius > 200) {
+                alert("Enter a valid Radius")
+            }
+
+            var ctxc = document.getElementById(["paper1"]).getContext("2d");
+            ctxc.clearRect(0, 0, 400, 400);
+            ctxc.beginPath();
+            ctxc.strokeStyle="white";
+            ctxc.lineWidth=2;
+            const y = 200;
+            const x = 200;
+            ctxc.arc(200,200,radius, 0, 2 * Math.PI);
+            ctxc.stroke();
+
+        }
+        const br3 = document.getElementById("compute_apc");
+
+        br3.onclick = function () {
+            var radius = document.getElementById("radius").value;
+            if (radius === "" || radius > 200) {
+                alert("Enter a valid Radius")
+            }
+            else {
+                p = 2 * 3.14 * radius;
+                a = 3.14 * radius * radius;
+                alert('the perimeter is ' + p + ' and the area is ' + a);
+            }
+        }
+
+        const bt1 = document.getElementById("validate_wh");
+
+
+        bt1.onclick = function () {
+            let width = document.getElementById("w").value;
+            let height = document.getElementById("h").value;
+
+            if (width === "" || height === "" || width > 600 || height > 400) {
+                alert("Enter a valid Input")
+            } else {
+                alert("Input is Valid")
+            }
+        }
+        const bt2 = document.getElementById("draw_r");
+
+
+        bt2.onclick = function () {
+
+
+            let width = document.getElementById("w").value;
+            let height = document.getElementById("h").value;
+            if (width === "" || height === "" || width > 600 || height > 400) {
+                alert("Enter a valid Input")
+            }
+            else {
+                var ctxr = document.getElementById("paper2").getContext("2d");
+                ctxr.clearRect(0, 0, 600, 400 );
+                ctxr.beginPath();
+                ctxr.strokeStyle="white";
+                ctxr.lineWidth=2;
+                ctxr.rect([5], [5], [width], [height]);
+                ctxr.stroke();
+                
+
+            }
+
+
+
+        }
+        const bt3 = document.getElementById("compute_apr");
+
+        bt3.onclick = function () {
+            const width = document.getElementById("w").value;
+            const height = document.getElementById("h").value;
+            if (width === "" || height === "" || width > 600 || height > 400) {
+                alert("Enter a valid Input")
+            }
+
+            else {
+                p = 2 * (Number(width) + Number(height));
+                a = width * height;
+                alert('the perimeter is ' + p + ' and the area is ' + a);
+            }
+        }
+
+        const bc = document.getElementById("clear");
+        bc.onclick = function () {
+            let ctxc = document.getElementById('paper1').getContext("2d");
+            let ctxr = document.getElementById('paper2').getContext("2d");
+            var radius = document.getElementById("radius");
+            radius.value = '';
+            let width = document.getElementById("w");
+            width.value = '';
+            let height = document.getElementById("h");
+            height.value = '';
+            ctxr.clearRect(0, 0, 600, 400);
+            ctxc.clearRect(0, 0, 400, 400);
+
+
+
+
+
+
+        }
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
